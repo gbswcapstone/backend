@@ -18,10 +18,10 @@ const corsOptions = {
 };
 
 const mysqlOptions = {
-  host: "localhost",
-  user: "root",
-  password: "1234",
-  database: "Uistagram",
+  host: "nodejs-014.cafe24.com",
+  user: "wjdgotjd529",
+  password: "Baby1018",
+  database: "wjdgotjd529",
   port: "3306",
 };
 
