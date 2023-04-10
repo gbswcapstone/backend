@@ -48,12 +48,15 @@ const getLocation = () => {
 
 goCurrentLoc.addEventListener("click", () => {
   if (navigator.geolocation) {
+    console.log("O");
     navigator.geolocation.getCurrentPosition((position) => {
       const lat = position.coords.latitude;
       const lon = position.coords.longitude;
 
       map.panTo(new kakao.maps.LatLng(lat, lon));
     });
+  } else {
+    console.log("X");
   }
 });
 
