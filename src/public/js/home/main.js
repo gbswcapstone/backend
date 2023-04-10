@@ -52,7 +52,7 @@ goCurrentLoc.addEventListener("click", () => {
     navigator.geolocation.getCurrentPosition((position) => {
       const lat = position.coords.latitude;
       const lon = position.coords.longitude;
-
+      console.log(position);
       map.panTo(new kakao.maps.LatLng(lat, lon));
     });
   } else {
