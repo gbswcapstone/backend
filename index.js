@@ -25,20 +25,20 @@ const mysqlOptions = {
   port: "3306",
 };
 
-const sessionStore = new MySQLStore(mysqlOptions);
+// const sessionStore = new MySQLStore(mysqlOptions);
 
-app.use(
-  session({
-    secret: "Uistagram2023",
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 24,
-      httpOnly: true,
-    },
-    store: sessionStore,
-  })
-);
+// app.use(
+//   session({
+//     secret: "Uistagram2023",
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: {
+//       maxAge: 1000 * 60 * 60 * 24,
+//       httpOnly: true,
+//     },
+//     store: sessionStore,
+//   })
+// );
 
 app.use(cors(corsOptions));
 

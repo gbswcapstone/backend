@@ -11,7 +11,8 @@ const map = new kakao.maps.Map(mapContainer, mapOption);
 
 const getLocation = () => {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
+    navigator.geolocation.watchPosition((position) => {
+      console.log(position);
       const lat = position.coords.latitude;
       const lon = position.coords.longitude;
 
@@ -39,9 +40,6 @@ const getLocation = () => {
         map: map,
       });
       currentOverlay.setMap(map);
-      setTimeout(() => {
-        currentOverlay.setMap(null);
-      }, 520);
     });
   }
 };
@@ -60,4 +58,6 @@ goCurrentLoc.addEventListener("click", () => {
   }
 });
 
-setInterval(getLocation, 500);
+getLocation();
+
+// setInterval(getLocation, 500);
