@@ -1,63 +1,16 @@
-const mapContainer = document.querySelector(".map");
-const trackingCheckbox = document.querySelector("#tracking");
-const goCurrentLoc = document.querySelector(".goCurrentLoc");
+const textInputField = document.querySelector(".input");
+const btn = document.querySelector(".btn");
+const utterThis = new SpeechSynthesisUtterance();
+const synth = window.speechSynthesis;
 
-const mapOption = {
-  center: new kakao.maps.LatLng(33.450701, 126.570667),
-  level: 3,
-};
+const socket = io.connect("http://localhost:8001");
 
-const map = new kakao.maps.Map(mapContainer, mapOption);
-
-const getLocation = () => {
-  if (navigator.geolocation) {
-    navigator.geolocation.watchPosition((position) => {
-      console.log(position);
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
-
-      // const moveLatLon = new kakao.maps.LatLng(lat, lon);
-
-      // const marker = new kakao.maps.Marker({
-      //   position: moveLatLon,
-      // });
-
-      // marker.setMap(null);
-      // marker.setMap(map);
-
-      // map.panTo(moveLatLon);
-
-      if (trackingCheckbox.checked) {
-        map.panTo(new kakao.maps.LatLng(lat, lon));
-      }
-
-      const gps_content =
-        '<div><img class="pulse" draggable="false" unselectable="on" src="https://ssl.pstatic.net/static/maps/m/pin_rd.png" alt=""></div>';
-
-      const currentOverlay = new kakao.maps.CustomOverlay({
-        position: new kakao.maps.LatLng(lat, lon),
-        content: gps_content,
-        map: map,
-      });
-      currentOverlay.setMap(map);
-    });
-  }
-};
-
-goCurrentLoc.addEventListener("click", () => {
-  if (navigator.geolocation) {
-    console.log("O");
-    navigator.geolocation.getCurrentPosition((position) => {
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
-      console.log(position);
-      map.panTo(new kakao.maps.LatLng(lat, lon));
-    });
-  } else {
-    console.log("X");
-  }
+btn.addEventListener("click", () => {
+  socket.emit("ttsSend", { msg: textInputField.value });
+  textInputField.value = "";
 });
 
-getLocation();
-
-// setInterval(getLocation, 500);
+socket.on("ttsSend", (msg) => {
+  utterThis.text = msg.msg;
+  synth.speak(utterThis);
+});
