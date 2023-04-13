@@ -3,7 +3,7 @@ const btn = document.querySelector(".btn");
 const utterThis = new SpeechSynthesisUtterance();
 const synth = window.speechSynthesis;
 
-const socket = io.connect("http://localhost:8001");
+const socket = io();
 
 btn.addEventListener("click", () => {
   socket.emit("ttsSend", { msg: textInputField.value });
