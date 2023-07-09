@@ -1,5 +1,5 @@
-const UserStorage = require("./UserStorage");
-const bcrypt = require("bcrypt");
+const UserStorage = require("./UserStorage.js");
+const crypto = require("crypto");
 
 class User {
   constructor(body) {
@@ -9,12 +9,14 @@ class User {
   async login() {
     const client = this.body;
     const user = await UserStorage.getUserInfo(client.id);
+
     try {
       if (user) {
-        if (
-          user.id === client.id &&
-          bcrypt.compareSync(client.password, user.password)
-        ) {
+        const hashPassword = crypto
+          .createHash("sha512")
+          .update(client.password + user.salt)
+          .digest("hex");
+        if (user.id === client.id && user.password === hashPassword) {
           return {
             success: true,
             name: user.name,
@@ -23,6 +25,7 @@ class User {
           };
         }
       }
+
       return { success: false, msg: "다시 입력해주세요." };
     } catch (err) {
       return { success: false, msg: err };

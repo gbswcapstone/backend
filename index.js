@@ -14,31 +14,29 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const corsOptions = {
-  origin: "*",
+  origin: ["https://uistagram.gbsw.hs.kr"],
 };
 
-const mysqlOptions = {
-  host: "nodejs-014.cafe24.com",
-  user: "wjdgotjd529",
-  password: "Baby1018",
-  database: "wjdgotjd529",
-  port: "3306",
-};
+const sessionStore = new MySQLStore({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PSWORD,
+  database: process.env.DB_DATABASE,
+});
 
-// const sessionStore = new MySQLStore(mysqlOptions);
-
-// app.use(
-//   session({
-//     secret: "Uistagram2023",
-//     resave: false,
-//     saveUninitialized: true,
-//     cookie: {
-//       maxAge: 1000 * 60 * 60 * 24,
-//       httpOnly: true,
-//     },
-//     store: sessionStore,
-//   })
-// );
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24,
+      httpOnly: true,
+    },
+    store: sessionStore,
+    name: "session_id",
+  })
+);
 
 app.use(cors(corsOptions));
 

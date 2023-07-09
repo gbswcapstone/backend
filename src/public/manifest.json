@@ -1,0 +1,23 @@
+{
+  "background_color": "#ffffff",
+  "description": "test app",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "hs529",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "hs529",
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "categories": [],
+  "screenshots": [],
+  "icons": [
+    {
+      "src": "/images/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [],
+  "lang": "ko"
+}

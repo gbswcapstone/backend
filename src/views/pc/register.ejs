@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/pc/login.css" />
+    <link rel="manifest" href="manifest.json" />
+    <script type="module">
+      import "https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate";
+      const el = document.createElement("pwa-update");
+      document.body.appendChild(el);
+    </script>
+  </head>
+  <body>
+    <div class="container right-panel-active" id="container">
+      <div class="form-container sign-up-container">
+        <form action="#">
+          <h1>회원가입</h1>
+          <input type="text" placeholder="Name" />
+          <input type="email" placeholder="Email" />
+          <input type="password" placeholder="Password" />
+          <button>확인</button>
+        </form>
+      </div>
+      <div class="form-container sign-in-container">
+        <form action="#">
+          <h1>로그인</h1>
+          <input type="email" placeholder="Email" />
+          <input type="password" placeholder="Password" />
+          <a href="#">비밀번호를 잊어버리셨나요?</a>
+          <button>확인</button>
+        </form>
+      </div>
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h1>방문을 환영합니다!</h1>
+            <p>
+              저희의 웹사이트를 더욱더 다양하게 <br />이용하시려면 로그인을
+              하십시오.
+            </p>
+            <button class="ghost" id="signIn">로그인</button>
+          </div>
+          <div class="overlay-panel overlay-right">
+            <h1>안녕하세요<br />반갑습니다!</h1>
+            <p>회원가입을 하고 저희와 함께하세요!</p>
+            <button class="ghost" id="signUp">회원가입</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/pc/login.js"></script>
+  </body>
+</html>

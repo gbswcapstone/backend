@@ -1,0 +1,9 @@
+.env
+node_modules/
+src\public\css/
+src\public\images/
+src\public\js/
+src\public\manifest.json
+src\public\offline.html
+src\public\pwabuilder-sw.js
+src\views/

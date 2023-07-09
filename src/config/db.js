@@ -1,14 +1,15 @@
-// const mysql = require("mysql");
+const mysql = require("mysql");
+require("dotenv").config();
 
-// const db = mysql.createConnection({
-//   host: "nodejs-014.cafe24.com",
-//   user: "wjdgotjd529",
-//   password: "Baby1018",
-//   database: "wjdgotjd529",
-//   port: "3306",
-//   dateStrings: "date",
-// });
+const db = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PSWORD,
+  database: process.env.DB_DATABASE,
+  multipleStatements: true,
+  dateStrings: "date",
+});
 
-// db.connect();
+db.connect();
 
-// module.exports = db;
+module.exports = db;
